@@ -67,7 +67,29 @@ function setup() {
   button.position(220,30);
   button.size(50,50);
   button.mouseClicked(drop);
+blower = createImg('balloon.png');
 
+blower.position (10,250);
+
+blower.size(150,100);
+
+
+blower.mouseClicked(airblow);
+
+
+
+
+
+mute_btn createImg('mute.png');
+
+
+
+mute_btn.position (450,20);
+
+
+mute_btn.size(50,50);
+
+mute_btn.mouseClicked (mute);
   
   rope = new Rope(7,{x:245,y:30});
   ground = new Ground(200,690,600,20);
@@ -115,12 +137,15 @@ function draw()
   if(collide(fruit,bunny)==true)
   {
     bunny.changeAnimation('eating');
+    eating_sound.play();
   }
 
 
   if(fruit!=null && fruit.position.y>=650)
   {
     bunny.changeAnimation('crying');
+   bk_song.stop();
+   sad_sound.play();
     fruit=null;
      
    }
@@ -152,4 +177,25 @@ function collide(body,sprite)
          }
 }
 
+function airblow()
+
+{
+
+Matter.Body.apply Force (fruit, {x:0,y:0}, {x:0.01,y:0});
+
+
+air.play();
+}
+function mute()
+{
+if(bk_song.isPlaying())
+}
+bk_song.stop();
+}
+else{
+bk_song.play();
+
+}
+
+}
 
